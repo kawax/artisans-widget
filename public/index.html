@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WebComponents Widget</title>
+
+    <script src="./artisans.js" defer></script>
+
+    <link href="./css/app.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <section class="hero is-dark">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    WebComponents Widget
+                </h1>
+                <h2 class="subtitle">
+                    <a class="button is-white" href="https://artisans.kawax.biz/" target="_blank"
+                       rel="noopener noreferrer">Laravel職人を探す</a>
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <article class="message is-dark">
+        <div class="message-header">
+            <p>使い方</p>
+        </div>
+        <div class="message-body content">
+            <ol>
+                <li>使用するページごとに一度だけJavaScriptを読み込む。
+                    <code>&lt;script src="https://widget.kawax.biz/artisans.js" defer&gt;&lt;/script&gt;</code>
+                </li>
+                <li>各ウィジェットを使用する。
+                    <code>&lt;artisans-user limit="5"&gt;&lt;/artisans-user&gt;</code>
+                </li>
+            </ol>
+
+            <p>
+                とりあえず作ってみただけの段階なのでどう表示するかは今後変わるかもしれない。
+            </p>
+            <p>
+                こっちはNetlify使っていてサーバーの心配はないので外部で使われても大丈夫。URLは変えないので指定通りの使い方をしていれば急に使えなくなる可能性は低い。それでも本体のAPI呼んでる以上本体が止まれば終わり。
+            </p>
+
+        </div>
+    </article>
+
+
+    <article class="message is-primary">
+        <div class="message-header">
+            <p>artisans-profile</p>
+        </div>
+        <div class="message-body content">
+            ユーザーのプロフィールを表示。
+
+            <p>
+                <code>&lt;artisans-profile name="kawax" width="400"&gt;&lt;/artisans-profile&gt;</code>
+            </p>
+            <dl>
+                <dt class="has-text-weight-semibold">name</dt>
+                <dd>ユーザー名</dd>
+                <dt class="has-text-weight-semibold">width</dt>
+                <dd>表示幅。デフォルト=なし。</dd>
+            </dl>
+
+            <artisans-profile name="kawax" width="400"></artisans-profile>
+
+        </div>
+    </article>
+
+    <article class="message is-primary">
+        <div class="message-header">
+            <p>artisans-user</p>
+        </div>
+        <div class="message-body">
+            職人リスト。
+
+            <p>
+                <code>&lt;artisans-user limit="10"&gt;&lt;/artisans-user&gt;</code>
+            </p>
+
+            <dl>
+                <dt class="has-text-weight-semibold">limit</dt>
+                <dd>表示件数。デフォルト=10。</dd>
+            </dl>
+
+            <div class="columns">
+                <div class="column is-one-third">
+                    <artisans-user limit="5"></artisans-user>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="message is-primary">
+        <div class="message-header">
+            <p>artisans-post</p>
+        </div>
+        <div class="message-body">
+            募集リスト。
+
+            <p>
+                <code>&lt;artisans-post limit="10"&gt;&lt;/artisans-post&gt;</code>
+            </p>
+
+            <dl>
+                <dt class="has-text-weight-semibold">limit</dt>
+                <dd>表示件数。デフォルト=10。</dd>
+            </dl>
+
+            <div class="columns">
+                <div class="column is-one-third">
+                    <artisans-post limit="10"></artisans-post>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+</body>
+</html>
