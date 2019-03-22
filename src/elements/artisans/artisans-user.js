@@ -12,6 +12,7 @@ class User extends HTMLElement {
   }
 
   html () {
+    //<img alt="${user.name}" src="${this.url}image/user/${user.name}" width="200">
     let userTemplates = []
     for (const user of this.users) {
       userTemplates.push(
@@ -52,7 +53,7 @@ class User extends HTMLElement {
       return response.json()
     }).then(json => {
       this.users = json.data
-      console.log(this.users)
+      //console.log(this.users)
       render(this.html(), this)
     })
   }

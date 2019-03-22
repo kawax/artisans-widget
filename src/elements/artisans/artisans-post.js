@@ -51,7 +51,7 @@ class Post extends HTMLElement {
       return response.json()
     }).then(json => {
       this.posts = json.data
-      console.log(this.posts)
+      //console.log(this.posts)
       render(this.html(), this)
     })
   }
