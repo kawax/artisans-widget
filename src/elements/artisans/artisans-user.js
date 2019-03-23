@@ -11,8 +11,20 @@ class User extends HTMLElement {
     this.users = {}
   }
 
-  html () {
-    //<img alt="${user.name}" src="${this.url}image/user/${user.name}" width="200">
+  html (text) {
+    return html`${style()}<article class="message is-primary">
+        <div class="message-header">
+            <p>${this.header}</p>
+        </div>
+        <div class="message-body has-background-white is-paddingless">
+           ${text}
+        </div>
+    </article>`
+  }
+
+  successHtml () {
+    //<img alt="${user.name}" src="${this.url}image/user/${user.name}"
+    // width="200">
     let userTemplates = []
     for (const user of this.users) {
       userTemplates.push(
@@ -34,14 +46,11 @@ class User extends HTMLElement {
       )
     }
 
-    return html`${style()}<article class="message is-primary">
-    <div class="message-header">
-    <p>${this.header}</p>
-    </div>
-    <div class="message-body has-background-white is-paddingless">
-    ${userTemplates}
-    </div>
-    </article>`
+    return this.html(userTemplates)
+  }
+
+  errorHtml (error) {
+    return this.html(error)
   }
 
   connectedCallback () {
@@ -54,7 +63,10 @@ class User extends HTMLElement {
     }).then(json => {
       this.users = json.data
       //console.log(this.users)
-      render(this.html(), this)
+      render(this.successHtml(), this)
+    }).catch(error => {
+      //console.log(error)
+      render(this.errorHtml(error), this)
     })
   }
 

@@ -11,14 +11,25 @@ class Post extends HTMLElement {
     this.posts = {}
   }
 
-  html () {
+  html (text) {
+    return html`${style()}<article class="message is-primary">
+        <div class="message-header">
+            <p>${this.header}</p>
+        </div>
+        <div class="message-body has-background-white is-paddingless">
+           ${text}
+        </div>
+    </article>`
+  }
+
+  successHtml () {
     let postTemplates = []
     for (const post of this.posts) {
       postTemplates.push(
         html`<article class="media">
   <figure class="media-left">
     <p class="image is-32x32">
-      <img alt="${post.user.name}}" class="is-rounded" width="32" src="${post.user.avatar}">
+      <img alt="${post.user.name}" class="is-rounded" width="32" src="${post.user.avatar}">
     </p>
   </figure>
   <div class="media-content">
@@ -28,18 +39,15 @@ class Post extends HTMLElement {
      </p>
  </div>
 </div>
-</article>`
+</article>`,
       )
     }
 
-    return html`${style()}<article class="message is-primary">
-        <div class="message-header">
-            <p>${this.header}</p>
-        </div>
-        <div class="message-body has-background-white is-paddingless">
-           ${postTemplates}
-        </div>
-    </article>`
+    return this.html(postTemplates)
+  }
+
+  errorHtml (error) {
+    return this.html(error)
   }
 
   connectedCallback () {
@@ -47,12 +55,18 @@ class Post extends HTMLElement {
   }
 
   getPosts () {
-    fetch(this.url + 'api/post?limit=' + this.limit).then(response => {
+    const input = this.url + 'api/post?limit=' + this.limit
+    const init = {redirect: 'error'}
+
+    fetch(input, init).then(response => {
       return response.json()
     }).then(json => {
       this.posts = json.data
       //console.log(this.posts)
-      render(this.html(), this)
+      render(this.successHtml(), this)
+    }).catch(error => {
+      //console.log(error)
+      render(this.errorHtml(error), this)
     })
   }
 
