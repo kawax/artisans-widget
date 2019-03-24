@@ -35,8 +35,11 @@ class Post extends HTMLElement {
   <div class="media-content">
     <div class="content">
      <p class="has-text-primary has-text-weight-semibold">
-       <a href="${this.url}post/${post.id}" target="_blank" rel="noopener noreferrer" class="has-text-primary">${post.title}</a>
+       <a href="${post.url}" target="_blank" rel="noopener noreferrer" class="has-text-primary">${post.title}</a>
      </p>
+     <a href="${post.url}" target="_blank" rel="noopener noreferrer">
+         <img src="${post.image}" alt="${post.title}">
+     </a>
  </div>
 </div>
 </article>`,

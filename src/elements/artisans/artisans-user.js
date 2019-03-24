@@ -37,7 +37,7 @@ class User extends HTMLElement {
   <div class="media-content">
     <div class="content">
      <p class="has-text-primary has-text-weight-semibold">
-       <a href="${this.url}@${user.name}" target="_blank" rel="noopener noreferrer" class="has-text-primary">${user.name}</a>
+       <a href="${user.url}" target="_blank" rel="noopener noreferrer" class="has-text-primary">${user.name}</a>
      </p>
     <p>${user.title}</p>
  </div>
